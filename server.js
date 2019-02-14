@@ -114,6 +114,17 @@ app.delete('/api/projects/:id', (req, res) => {
   res.json(projects[projectId]);
 })
 
+
+app.put('/api/projects/:id', (req, res) => {
+  let name = req.body.name;
+  let projectId = parseInt(req.params.id);
+
+  let foundProj = projects.filter( function(proj) {
+    return proj._id === projectId;
+  })[0];
+  foundProj.name = name;
+  res.json(foundProj)
+})
 /**********
  * SERVER *
  **********/
