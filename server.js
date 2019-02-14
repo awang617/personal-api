@@ -30,18 +30,18 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// const db = require('./models');
+const db = require('./models');
 
-const projects = [
-  {
-    _id: 1,
-    name: "JS Racer"
-  },
-  {
-    _id: 2,
-    name: "Shop"
-  }
-];
+// const projects = [
+//   {
+//     _id: 1,
+//     name: "JS Racer"
+//   },
+//   {
+//     _id: 2,
+//     name: "Shop"
+//   }
+// ];
 
 /**********
  * ROUTES *
