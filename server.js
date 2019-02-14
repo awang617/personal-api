@@ -2,7 +2,10 @@
 // [x] document api routes in /api
 // [x] make a route for api/profile
 // [x] make at least one resource you can CRUD
-// []
+// [] get
+// [x] post
+// [] delete
+// [x] put
 
 
 
@@ -93,6 +96,16 @@ app.get('/api/profile', (req, res) => {
 app.get('/api/projects', (req,res) => {
   res.json({projects})
 })
+
+app.get('/api/projects/:id', (req, res) => {
+  /* This endpoint will return a single todo with the * id specified in the route parameter (:id)*/
+  const projectId = parseInt(req.params.id);
+
+  const foundProject = projects.filter( function(project) {
+    return project._id === projectId;
+  })[0];
+  res.json(foundProject)
+});
 
 app.post('/api/projects', (req, res) => {
   const newProject = req.body;
