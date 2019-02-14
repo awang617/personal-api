@@ -67,8 +67,8 @@ app.get('/api', (req, res) => {
   // But you should change almost every line of this response.
   res.json({
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/example-username/express-personal-api/README.md", // CHANGE ME
-    baseUrl: "http://pure-spire-47744.herokuapp.com", // CHANGE ME
+    documentationUrl: "https://github.com/awang617/personal-api/README.md", // CHANGE ME
+    baseUrl: "https://shrouded-crag-40496.herokuapp.com/", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
@@ -100,8 +100,18 @@ app.post('/api/projects', (req, res) => {
   res.json(newProject)
 })
 
-app.put('/api/projects', (req, res) => {
+app.delete('/api/projects/:id', (req, res) => {
+  const projectId = parseInt(req.params.id);
 
+  projects.forEach(function(proj) {
+    if (proj._id === projectId) {
+      var index = projectId.indexOf(proj);
+      projects.splice(index, 1);
+    } else {
+      console.log("uh oh")
+    }
+  })
+  res.json(projects[projectId]);
 })
 
 /**********
