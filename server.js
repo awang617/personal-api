@@ -2,7 +2,7 @@
 // [x] document api routes in /api
 // [x] make a route for api/profile
 // [x] make at least one resource you can CRUD
-// [] get
+// [x] get
 // [x] post
 // [] delete
 // [x] put
@@ -75,7 +75,7 @@ app.get('/api', (req, res) => {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "GET", path: "/api/projects", description: "See my projects"}, // CHANGE ME
+      {method: "GET", path: "/api/projects/:id", description: "See my projects"}, // CHANGE ME
       {method: "POST", path: "/api/projects", description: "Create a new project"}, // CHANGE ME
       {method: "PUT", path: "/api/projects/:id", description: "Update a previous project"},
       {method: "DELETE", path: "/api/projects/:id", description: "Delete a project"}
@@ -116,9 +116,9 @@ app.post('/api/projects', (req, res) => {
 app.delete('/api/projects/:id', (req, res) => {
   const projectId = parseInt(req.params.id);
 
-  projects.forEach( (proj) => {
-    if (proj._id === projectId) {
-      var index = projectId.indexOf(proj);
+  projects.forEach( (project) => {
+    if (project._id === projectId) {
+      var index = projectId.indexOf(project);
       projects.splice(index, 1);
     } else {
       console.log("uh oh")
@@ -138,6 +138,8 @@ app.put('/api/projects/:id', (req, res) => {
   foundProj.name = name;
   res.json(foundProj)
 })
+
+
 /**********
  * SERVER *
  **********/
