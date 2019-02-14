@@ -4,7 +4,7 @@
 // [x] make at least one resource you can CRUD
 // [x] get
 // [x] post
-// [] delete
+// [x] delete
 // [x] put
 
 
@@ -115,16 +115,15 @@ app.post('/api/projects', (req, res) => {
 
 app.delete('/api/projects/:id', (req, res) => {
   const projectId = parseInt(req.params.id);
-
   projects.forEach( (project) => {
     if (project._id === projectId) {
-      var index = projectId.indexOf(project);
+      var index = projects.indexOf(project);
       projects.splice(index, 1);
     } else {
       console.log("uh oh")
     }
+    res.json(projects[projectId]);
   })
-  res.json(projects[projectId]);
 })
 
 
