@@ -1,8 +1,8 @@
 // TO DO
-// [] document api routes in /api
-// [] make a route for api/profile
-// [] make at least one resource you can CRUD
-
+// [x] document api routes in /api
+// [x] make a route for api/profile
+// [x] make at least one resource you can CRUD
+// []
 
 
 
@@ -67,7 +67,7 @@ app.get('/api', (req, res) => {
   // But you should change almost every line of this response.
   res.json({
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/awang617/personal-api/README.md", // CHANGE ME
+    documentationUrl: "https://github.com/awang617/personal-api/blob/master/README.md", // CHANGE ME
     baseUrl: "https://shrouded-crag-40496.herokuapp.com/", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
@@ -103,7 +103,7 @@ app.post('/api/projects', (req, res) => {
 app.delete('/api/projects/:id', (req, res) => {
   const projectId = parseInt(req.params.id);
 
-  projects.forEach(function(proj) {
+  projects.forEach( (proj) => {
     if (proj._id === projectId) {
       var index = projectId.indexOf(proj);
       projects.splice(index, 1);
