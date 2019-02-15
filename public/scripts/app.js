@@ -33,6 +33,17 @@ $(document).ready(function(){
     });
   });
 
+  $projectList.on('click', '.edit-project-submit-button', function() {
+    $(this).parent().hide();
+    let newName = $(this).parent().find("input").val();
+    $.ajax({
+      method: "PUT",
+      url: `/api/projects/${ $(this).attr('data-id') }`,
+      data: { name: newName },
+      success: (project) => {
+        $(this).parent().parent().find(".project-name").html(project.name);
+      }
+    })
 });
 
 function getProjectHtml(project) {
@@ -40,6 +51,10 @@ function getProjectHtml(project) {
           <p>
             <b>${project.name},</b>
             ${project.description} on ${project.date}. Find it <a href="${project.githubUrl}">here</a>!
+            <span class="edit-input" style="display: none">
+              <input type="text" value="${project.name}" />
+              <button class="edit-project-submit-button" data-id="${project._id}">Save</button>
+            </span>
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${project._id}>Delete</button>
           </p>`;
 }
