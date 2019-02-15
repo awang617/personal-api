@@ -116,12 +116,28 @@ app.get('/api/projects/:id', (req, res) => {
 });
 
 app.post('/api/projects', (req, res) => {
+  const newProject = new db.Project({
+    name: req.body.name,
+    description: req.body.description,
+    date: req.body.date,
+    githubUrl: req.body.githubUrl
+  })
+  newProject.save( (err, project) => {
+    if (err) {console.log(err)}
+    res.json(project)
+  })
+
   // const newProject = req.body;
   // projects.push(newProject);
   // res.json(newProject)
 })
 
 app.delete('/api/projects/:id', (req, res) => {
+  const projectId = req.params.id;
+  db.Project.findOneAndDelete({_id: projectId}, (err, deletedProject) => {
+    if (err) {console.log(err)}
+    res.json(deletedProject)
+  })
   // const projectId = parseInt(req.params.id);
   // projects.forEach( (project) => {
   //   if (project._id === projectId) {
@@ -136,6 +152,11 @@ app.delete('/api/projects/:id', (req, res) => {
 
 
 app.put('/api/projects/:id', (req, res) => {
+  const projectId = req.params.id;
+  db.Project.findOneAndUpdate({_id: projectId}, req.body, {new: true}, (err, updatedProject) => {
+    if (err) {console.log(err)}
+    res.json(updatedProject)
+  })
   // let name = req.body.name;
   // let projectId = parseInt(req.params.id);
 
