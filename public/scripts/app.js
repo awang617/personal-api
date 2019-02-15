@@ -38,8 +38,8 @@ $(document).ready(function(){
 function getProjectHtml(project) {
   return `<hr>
           <p>
-            <b>${project.name}</b>
-            , ${project.description} on ${project.date} find at ${project.githubUrl}
+            <b>${project.name},</b>
+            ${project.description} on ${project.date} find at <a href="${project.githubUrl}"></a>
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${project._id}>Delete</button>
           </p>`;
 }
