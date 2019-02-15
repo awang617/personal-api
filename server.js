@@ -94,48 +94,56 @@ app.get('/api/profile', (req, res) => {
 })
 
 app.get('/api/projects', (req,res) => {
-  res.json({projects})
+  db.Project.find( (err, foundProjects) => {
+    if (err) {console.log(err)}
+    res.json(foundProjects)
+  });
 })
 
 app.get('/api/projects/:id', (req, res) => {
+  db.Project.findOne({_id: req.params.id}, (err, foundProject) => {
+    if (err) {console.log(err)}
+    res.json(foundProject)
+  })
   /* This endpoint will return a single todo with the * id specified in the route parameter (:id)*/
-  const projectId = parseInt(req.params.id);
+  
+  // const projectId = parseInt(req.params.id);
 
-  const foundProject = projects.filter( function(project) {
-    return project._id === projectId;
-  })[0];
-  res.json(foundProject)
+  // const foundProject = projects.filter( function(project) {
+  //   return project._id === projectId;
+  // })[0];
+  // res.json(foundProject)
 });
 
 app.post('/api/projects', (req, res) => {
-  const newProject = req.body;
-  projects.push(newProject);
-  res.json(newProject)
+  // const newProject = req.body;
+  // projects.push(newProject);
+  // res.json(newProject)
 })
 
 app.delete('/api/projects/:id', (req, res) => {
-  const projectId = parseInt(req.params.id);
-  projects.forEach( (project) => {
-    if (project._id === projectId) {
-      var index = projects.indexOf(project);
-      projects.splice(index, 1);
-    } else {
-      console.log("uh oh")
-    }
-    res.json(projects[projectId]);
-  })
+  // const projectId = parseInt(req.params.id);
+  // projects.forEach( (project) => {
+  //   if (project._id === projectId) {
+  //     var index = projects.indexOf(project);
+  //     projects.splice(index, 1);
+  //   } else {
+  //     console.log("uh oh")
+  //   }
+  //   res.json(projects[projectId]);
+  // })
 })
 
 
 app.put('/api/projects/:id', (req, res) => {
-  let name = req.body.name;
-  let projectId = parseInt(req.params.id);
+  // let name = req.body.name;
+  // let projectId = parseInt(req.params.id);
 
-  let foundProj = projects.filter( function(proj) {
-    return proj._id === projectId;
-  })[0];
-  foundProj.name = name;
-  res.json(foundProj)
+  // let foundProj = projects.filter( function(proj) {
+  //   return proj._id === projectId;
+  // })[0];
+  // foundProj.name = name;
+  // res.json(foundProj)
 })
 
 
