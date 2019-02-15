@@ -59,7 +59,6 @@ function getProjectHtml(project) {
             <b>${project.name},</b>
             ${project.description} on ${project.date}. Find it <a href="${project.githubUrl}">here</a>!
             <button class="edit-project-button">Edit</button>
-            <br>
             <span class="edit-input" style="display: none">
               <input type="text" value="${project.name}" />
               <button class="edit-project-submit-button" data-id="${project._id}">Save</button>
