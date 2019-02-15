@@ -4,46 +4,47 @@ var allProjects = [];
 
 $(document).ready(function(){
 
-  $projectList = $('#projectTarget');
-  $.ajax({
-    method: 'GET',
-    url: '/api/projects',
-    success: handleSuccess,
-    error: handleError
-  });
-
-  $('#newProjectForm').on('submit', function(e) {
-    e.preventDefault();
+    $projectList = $('#projectTarget');
     $.ajax({
-      method: 'POST',
-      url: '/api/projects',
-      data: $(this).serialize(),
-      success: newProjectSuccess,
-      error: newProjectError
+        method: 'GET',
+        url: '/api/projects',
+        success: handleSuccess,
+        error: handleError
     });
-  });
 
-  $projectList.on('click', '.deleteBtn', function() {
-    console.log('clicked delete button to', '/api/projects/'+$(this).attr('data-id'));
-    $.ajax({
-      method: 'DELETE',
-      url: '/api/projects/'+$(this).attr('data-id'),
-      success: deleteProjectSuccess,
-      error: deleteProjectError
+    $('#newProjectForm').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+        method: 'POST',
+        url: '/api/projects',
+        data: $(this).serialize(),
+        success: newProjectSuccess,
+        error: newProjectError
+        });
     });
-  });
 
-  $projectList.on('click', '.edit-project-submit-button', function() {
-    $(this).parent().hide();
-    let newName = $(this).parent().find("input").val();
-    $.ajax({
-      method: "PUT",
-      url: `/api/projects/${ $(this).attr('data-id') }`,
-      data: { name: newName },
-      success: (project) => {
-        $(this).parent().parent().find(".project-name").html(project.name);
-      }
-    })
+    $projectList.on('click', '.deleteBtn', function() {
+        console.log('clicked delete button to', '/api/projects/'+$(this).attr('data-id'));
+        $.ajax({
+        method: 'DELETE',
+        url: '/api/projects/'+$(this).attr('data-id'),
+        success: deleteProjectSuccess,
+        error: deleteProjectError
+        });
+    });
+
+    $projectList.on('click', '.edit-project-submit-button', function() {
+        $(this).parent().hide();
+        let newName = $(this).parent().find("input").val();
+        $.ajax({
+        method: "PUT",
+        url: `/api/projects/${ $(this).attr('data-id') }`,
+        data: { name: newName },
+        success: (project) => {
+            $(this).parent().parent().find(".project-name").html(project.name);
+            }
+        });
+    });
 });
 
 function getProjectHtml(project) {
