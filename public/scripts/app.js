@@ -33,6 +33,12 @@ $(document).ready(function(){
         });
     });
 
+    $projectList.on('click', '.edit-project-button', function() {
+        console.log('clicked edit button');
+        $(this).parent().find(".edit-input").show();
+
+    });
+
     $projectList.on('click', '.edit-project-submit-button', function() {
         $(this).parent().hide();
         let newName = $(this).parent().find("input").val();
@@ -52,6 +58,8 @@ function getProjectHtml(project) {
           <p>
             <b>${project.name},</b>
             ${project.description} on ${project.date}. Find it <a href="${project.githubUrl}">here</a>!
+            <button class="edit-project-button">Edit</button>
+            <br>
             <span class="edit-input" style="display: none">
               <input type="text" value="${project.name}" />
               <button class="edit-project-submit-button" data-id="${project._id}">Save</button>
