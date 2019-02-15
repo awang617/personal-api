@@ -24,6 +24,22 @@ const project_list = [
     }
 ];
 
+db.Project.deleteMany({}, function(err, projects) {
+    console.log('removed all projects');
+    project_list.forEach( (projectData) => {
+        const project = new db.Project({
+            name: projectData.name,
+            description: projectData.description,
+            date: projectData.date,
+            githubUrl: projectData.githubUrl
+        });
+        project.save( (err, savedProject) => {
+            if (err) {console.log(err)}
+            console.log(`Saved ${savedProject.name}`)
+        });
+    });
+});
+
 // const new_campsite = {description: "Sharp rocks. Middle of nowhere."}
 
 // db.Campsite.create(new_campsite, function(err, campsite){
