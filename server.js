@@ -115,6 +115,11 @@ app.get('/api/projects/:id', (req, res) => {
   // res.json(foundProject)
 });
 
+// app.get('/api/projects', (req,res) => {
+//   const limit = req.params.limit;
+//   res.json()
+// })
+
 app.post('/api/projects', (req, res) => {
   const newProject = new db.Project({
     name: req.body.name,
