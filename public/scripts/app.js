@@ -56,14 +56,14 @@ $(document).ready(function(){
 function getProjectHtml(project) {
   return `<hr>
           <p>
-            <b>${project.name},</b>
+            <b class="project-name">${project.name},</b>
             ${project.description} on ${project.date}. Find it <a href="${project.githubUrl}">here</a>!
+            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${project._id}>Delete</button>
             <button class="edit-project-button btn btn-secondary pull-right">Edit</button>
             <span class="edit-input" style="display: none">
               <input type="text" value="${project.name}" />
               <button class="edit-project-submit-button btn btn-secondary" data-id="${project._id}">Save</button>
             </span>
-            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${project._id}>Delete</button>
           </p>`;
 }
 
